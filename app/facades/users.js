@@ -26,21 +26,32 @@ module.exports = {
 async function _register({ email, password }) {
 	try{
 		// Try to create new user.
-		const user = await User.create({
-			email,
-			password
-		});
 
-		// Issue new access and refresh JWT.
-		const [ tokens ] = await JWT.issueTokens({ user });
+		try {
+			const user = await User.create({
+				email,
+				password
+			});
 
-		// Prepare output.
-		const result = [
-			tokens,
-			user
-		];
-		// Send output.
-		return Promise.resolve(result);
+			// Issue new access and refresh JWT.
+			const [ tokens ] = await JWT.issueTokens({ user });
+
+			// Prepare output.
+			const result = [
+				tokens,
+				user
+			];
+	  		// Send output.
+			return Promise.resolve(result);
+			
+		} catch (error) {
+			if (error.name === 'SequelizeUniqueConstraintError') {
+				const err = new Err('Email already in use');
+				err.name = "EmailInUse";
+				throw err;
+			}
+		}
+		
 	}
 	catch(error){
 		return Promise.reject(error);

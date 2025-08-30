@@ -64,7 +64,7 @@ function UsersController() {
 			const password = req.body?.password
 			const firstName = req.body?.firstName
 			const lastName = req.body?.lastName
-
+			
 			// Create new one.
 			const [ tokens, user ] = await usersFacade.register({
 				email,
