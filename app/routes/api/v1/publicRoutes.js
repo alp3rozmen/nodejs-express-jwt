@@ -1,5 +1,5 @@
 module.exports = {
-	'GET /status': 'APIController.getStatus',
+	'GET / ': 'APIController.getStatus',
 
 	// User:
 	'POST /auth/register': 'UsersController.register',

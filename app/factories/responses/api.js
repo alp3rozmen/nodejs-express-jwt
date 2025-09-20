@@ -63,7 +63,7 @@ function _createOKResponse(options) {
 }
 
 /**
- * Sends response with provided error code.
+ * Sends response with proided error code.
  * Should be called on all failed respones.
  *
  * @param <Object> res

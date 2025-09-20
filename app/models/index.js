@@ -3,4 +3,5 @@
  */
 require('./User');
 require('./DisabledRefreshToken');
+require('./Device');
 // Add your models here ...
